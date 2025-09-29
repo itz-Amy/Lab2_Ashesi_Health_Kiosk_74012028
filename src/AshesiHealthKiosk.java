@@ -4,10 +4,13 @@ import java.util.Scanner;
 public class AshesiHealthKiosk {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        float triageValue = 0;
+        double newBMI = 0;
+        String service ;
         System.out.print("Enter your service code: ");
         String serviceCode = scan.nextLine().toUpperCase().trim();
 
-        String service ;
+// TASK 1
         switch (serviceCode.charAt(0)) {
             case 'P' -> {
                 System.out.println("Go to: Pharmacy Desk");
@@ -35,8 +38,7 @@ public class AshesiHealthKiosk {
         }
 
 
-        float triageValue = 0;
-        double newBMI = 0;
+  // TASK 2
         if (serviceCode.charAt(0) == 'T') {
             System.out.print("""
                     Enter health metric
@@ -114,16 +116,17 @@ public class AshesiHealthKiosk {
         } else
             System.out.println("Invalid Length");
 
-
+// TASK 4
         System.out.print("Enter your firstname: ");
         String name = scan.next();
         char base = name.toUpperCase().charAt(0);
         char shiftedLetter = (char) ('A' + (base - 'A' + 2) % 26);
-        String finalCode = Character.toString(shiftedLetter) + shortCode.substring(3) + "-"
-                + Math.round(triageValue);
+        String finalCode = Character.toString(shiftedLetter) + shortCode.substring(shortCode.length() - 2)
+        + "-" + Math.round(triageValue);
 
         System.out.println(finalCode);
 
+// TASK 5
         System.out.print("SUMMARY: " + service + " | ID = " + shortCode + " | Code = "+ finalCode);
 
     }
